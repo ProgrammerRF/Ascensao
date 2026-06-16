@@ -1,0 +1,132 @@
+<Alterar_Dados>:
+	# Cria um Layout que comporta os widgets da tela de alterar dados
+	FloatLayout:
+		pos_hint:{"top": 1, "right": 1}
+		size_hint:1,1
+		
+		# Cria um plano de fundo
+		canvas.before:
+			Color:
+				rgba:1,1,1,1
+			Rectangle:
+				pos: self.pos
+				size: self.size
+				source: app.rp("assets/images/imagens/aurora.jpg")
+		
+		# Cria um texto no canto superior esquerdo
+		Label:
+			text: "Voltar"
+			pos_hint:{"top":1.43, "right":0.60}
+			size_hint:1,1
+			font_size:28
+		
+		# Cria um botão invisivel na mesma posição do texto voltar com a funcionalidade de retornar para a tela de configuração
+		Button:
+			pos_hint:{"top": 0.95, "right": 0.18}
+			size_hint:0.15, 0.04
+			background_color: 0,0,0,0
+			on_press: app.alterar_tela("configuracao")
+		
+		# Cria um titulo no canto superior central		
+		Label:
+			text:"Ascensão"
+			pos_hint:{"top":1.30, "right":1}
+			size_hint:1,1
+			color:0,1,0,1
+			font_size:50
+
+		Label:
+		    text: "Email Antigo"
+		    pos_hint:{"top":1.16, "right":1}
+		    size_hint:1,1
+		
+		# Cria uma entrada de dados que recebe email antigo
+		TextInput:
+			id:email_antigo
+			pos_hint:{"top": 0.63, "right": 0.73}
+			size_hint:0.45, 0.06
+			multiline:False
+			disabled: True
+
+		Label:
+		    text:"Email Novo"
+		    pos_hint:{"top": 1.04, "right":1} # 41
+		    size_hint: 1,1
+
+		TextInput:
+		    id: email_novo
+		    pos_hint:{"top": 0.52, "right": 0.73}
+		    size_hint: 0.45, 0.06
+		    multiline: False
+
+		Label:
+		    text:"Nome"
+		    pos_hint:{"top": 0.93, "right":1} # 41
+		    size_hint: 1,1
+		
+		# Cria uma entrada de dados que recebe o nome o usuario
+		TextInput:
+			id:nome
+			pos_hint:{"top":0.41, "right":0.73}
+			size_hint:0.45, 0.06
+			multiline:False
+
+		Label:
+		    text:"Senha"
+		    pos_hint:{"top": 0.82, "right":1} # 41
+		    size_hint: 1,1
+		
+		# Cria uma entrada de dados que recebe a senha do usuario
+		TextInput:
+			id:senha
+			pos_hint:{"top": 0.30, "right": 0.73}
+			size_hint:0.45, 0.06
+			multiline:False
+			password: True
+		
+		# Icone mostrar/ocultar senha
+		Image:
+			id: icone
+			source: app.rp("assets/icons/mostrarsenha.png")
+			pos_hint:{"top":0.29,"right":1.20}
+			size_hint:1, 0.03
+		
+		# Botão invisivel que fica na mesma posição do icone mostrar/ocultar senha
+		Button:
+			pos_hint:{"top": 0.29, "right": 0.72}
+			size_hint: 0.05, 0.04
+			background_color: 0,0,0,0
+			on_press: root.mostrar_senha()
+		
+		# Texto que contem as mensagens de erro
+		
+		Label:
+			id:erro
+			text: ""
+			pos_hint:{"top":0.20, "right":1}
+			size_hint:1,0.05
+			color:1,0,0,1
+			font_size:28
+		
+		# Imagem de fundo do botão
+		Image:
+			pos_hint:{"top": 0.12, "right": 1}
+			size_hint:1, 0.05
+			source: app.rp("assets/images/imagens/Botao.png")
+		
+		# Texto que aparece na frente da imagem de fundo do botão
+		Label:
+			text:"Salvar Alterações"
+			pos_hint:{"top": 0.595, "right": 1}
+			size_hint:1,1
+		
+		# Botão invisivel na mesma posição da imagem de fundo e do texto do botão salvar alterações que chama a função validar quando pressionado
+		Button:
+			id:botao
+			pos_hint:{"top": 0.12, "right": 0.576}
+			size_hint:0.15, 0.05
+			background_color: 0,0,0,0
+			on_press: app.alterar_tela("configuracao") if root.validar() == True else print("erro")
+		
+		
+			

@@ -1,0 +1,127 @@
+<Cadastro>:
+	# FloatLayout define o layout da tela
+	FloatLayout:
+		pos_hint:{"top":1, "right":1}
+		size_hint:1,1
+		
+		# Canvas define o plano de fundo
+		canvas.before:
+			Color:
+				rgba: 1,1,1,1
+			Rectangle:
+				pos:self.pos
+				size:self.size
+				source: app.rp("assets/images/imagens/aurora.jpg")
+		
+		# Texto de sair
+		Label:
+			text: "Voltar"
+			pos_hint: {"top": 1.43, "right": 0.60}
+			size_hint:1,1
+			font_size:28
+		
+		# Botão do texto de voltar
+		Button:
+			pos_hint: {"top": 0.95, "right": 0.18}
+			size_hint:0.15, 0.04
+			background_color:0,0,0,0
+			on_press: root.manager.current = "login"
+				
+		# Titulo
+		Label:
+			text: "Ascensão"
+			color:0,1,0,1
+			pos_hint: {"top": 1.30, "right": 1}
+			size_hint:1,1
+			font_size:50
+			
+		# Entrada de dados do usuario para escrever o Email
+		TextInput:
+			id: email
+			hint_text: "Digite seu E-mail"
+			pos_hint: {"top": 0.68, "right": 0.73}
+			size_hint: 0.45, 0.06
+			multiline: False
+		
+		# Entrada de dados para o usuario escrever o nome
+		TextInput:
+			id: nome
+			hint_text: "Digite seu nome"
+			pos_hint: {"top": 0.59, "right": 0.73}
+			size_hint: 0.45, 0.06
+			multiline: False
+		
+		# Entrada de dados que permite o usuario escrever a senha
+		TextInput:
+			id: senha1
+			hint_text: "Digite sua senha"
+			pos_hint: {"top": 0.49, "right": 0.73}
+			size_hint: 0.45, 0.06
+			multiline: False
+			password: True
+			
+		# Imagem de mostrar/esconder senha da entrada de dados senha1
+		Image:
+			id:imagem_senha1
+			source: app.rp("assets/icons/mostrarsenha.png")
+			pos_hint: {"top": 0.48, "right": 1.20}
+			size_hint: 1, 0.03
+			
+		# Botão que executa a função de alterar a imagem e o tipo de entrada de dados da senha1
+		Button:
+			text:""
+			pos_hint: {"top": 0.48, "right": 0.72}
+			size_hint: 0.05, 0.04
+			background_color: 0,0,0,0
+			on_press: root.mostrarsenha1()
+			
+		# Entrada de dados que permite o usuario escrever a senha novamente
+		TextInput:
+			id: senha2
+			hint_text: "Digite sua senha novamente"
+			pos_hint: {"top": 0.40, "right": 0.73}
+			size_hint: 0.45, 0.06
+			multiline: False
+			password: True
+			
+		# Imagem de mostrar/esconder senha da entrada de dados senha2
+		Image:
+			id:imagem_senha2
+			source: app.rp("assets/icons/mostrarsenha.png")
+			pos_hint: {"top": 0.39, "right": 1.20}
+			size_hint: 1, 0.03
+		
+		# Botão que executa a função de alterar a imagem de mostrar/esconder senha e altera o tipo de dados de senha2
+		Button:
+			text:""
+			pos_hint: {"top": 0.39, "right": 0.72}
+			size_hint: 0.05, 0.04
+			background_color: 0,0,0,0
+			on_press:root.mostrarsenha2()
+			
+		# Texto que mostra as mensagens de erro
+		Label:
+			id: erro
+			text: ""
+			color: 1,0,0,1
+			pos_hint: {"top": 0.32, "right": 1}
+			size_hint: 1, 0.05
+			font_size: 28
+		
+		# Imagem do botão de cadastro
+		Image:
+			pos_hint: {"top": 0.24, "right": 1}
+			size_hint: 1, 0.05
+			source: app.rp("assets/images/imagens/Botao.png")
+		
+		# Botão da tela de cadastro
+		Button:
+			id:cadastrar
+			text: "Cadastrar"
+			pos_hint: {"top": 0.24, "right": 0.576}
+			size_hint: 0.15, 0.05
+			background_color: 0,0,0,0
+			on_press: app.alterar_tela("principal") if root.cadastrar() == True else print("erro")
+		
+			
+			

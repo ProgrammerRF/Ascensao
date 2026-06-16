@@ -1,0 +1,24 @@
+# Ambiente virtual
+venv/
+
+# PyCharm
+.idea/
+
+# Kivy
+.kivy/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Build e executáveis
+build/
+dist/
+
+# Logs
+*.log
+
+# Arquivos de ambiente
+.env
