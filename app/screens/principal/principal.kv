@@ -1,0 +1,96 @@
+<Principal>: # classe primaria do arquivo principal.py
+	FloatLayout: # Cria um layout que armazena os widgets abaixo
+		pos_hint:{"top":1, "right":1} # define a altura e largura do layout
+		size_hint:1,1 # Define tamanho e comprimento do layout
+		
+		canvas.before:
+			# Cria uma imagem de fundo
+			Color:
+				rgba:1,1,1,1 #define a cor branca
+			Rectangle: # Cria um.retangulo
+				pos: self.pos # define a posição baseada na posição do layout
+				size: self.size # Define o tamanho baseado no tamanho do layout
+				source: app.rp("assets/images/imagens/aurora.jpg") # corrige o caminho relativo usando a função app.rp que leva a imagem
+	
+	Label: # Cria um texto com a mensagem sair no canto superior esquerdo
+		text:"Sair"
+		pos_hint:{"top":1.43,"right":0.60}
+		size_hint:1,1
+		font_size:28
+	
+	Button: # Cria um botao invisivel na mesma posição do texto acima chamando a função saida quando pressionado
+		pos_hint:{"top":0.95,"right":0.18}
+		size_hint:0.15, 0.04
+		background_color:0,0,0,0
+		on_press: root.saida()
+	
+	Image: # Adiciona um icone com a foto de perfil no canto superior direito
+		source: app.rp("assets/images/foto_usuario/foto1.png")
+		pos_hint:{"top": 0.96, "right": 0.92}
+		size_hint:0.08, 0.08
+
+	# Botão invisivel na mesma posição da foto de perfil que muda para a tela de configurações quando pressionado
+	Button:
+		pos_hint:{"top": 0.96, "right": 0.90}
+		size_hint:0.04, 0.10
+		background_color:0,0,0,0
+		on_press: app.alterar_tela("configuracao")
+	
+	Label: # Cria um texto que contem o nome do usuario
+		id: usuario
+		text:""
+		pos_hint:{"top":1.35, "right":1.38}
+		size_hint:1,1
+			 
+	Label: # Nome do projeto que aparece no top da tela
+		text:"Ascensão"
+		pos_hint:{"top":1.30, "right":1}
+		size_hint:1,1
+		color:0,1,0,1
+		font_size:50
+	
+	ScrollView: # Adiciona os widgets do BoxLayout em um scrollView
+		id: scroll
+		size_hint:(1,0.40) # define o tamanho da caixa do scrollview: 0.40
+		pos_hint:{'top':0.68,'right':1}
+		do_scroll_x: False
+		bar_width: 10
+			
+		BoxLayout: # Adiciona o Label
+			id: box
+			orientation:'vertical'
+			pos_hint:{'top':1,'right':1}
+			size_hint_y:None
+			height: self.minimum_height # Altura automatica baseada nos filhos
+			
+			Label: # Contem um texto com a resposta da IA
+				id:resposta_ia
+				text:"The Zen of Python, by Tim Peters\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\nSpecial cases aren't special enough to break the rules.\nAlthough practicality beats purity.\nErrors should never pass silently.\nUnless explicitly silenced.\nIn the face of ambiguity, refuse the temptation to guess.\nThere should be one-- and preferably only one --obvious way to do it.\nAlthough that way may not be obvious at first unless you're Dutch.\nNow is better than never.\nAlthough never is often better than *right* now.\nIf the implementation is hard to explain, it's a bad idea.\nIf the implementation is easy to explain, it may be a good idea.\nNamespaces are one honking great idea -- let's do more of those!"
+				size_hint_y:None
+				text_size: self.width - 20, None
+				halign:'left'
+				valign:'top'
+				padding: 10,20
+				height: self.texture_size[1] + 50 # Altura dinamica com espaço extra
+	
+	TextInput: # Entrada de dados que recebe as perguntas do usuario e altera a posição quando pressinado
+		id:pergunta
+		pos_hint:{"top": 0.18, "right": 0.73}
+		size_hint:0.45,0.08
+		hint_text: "Digite algo..."
+		background_color:0.3,0.3,0.3,1
+		foreground_color:1,1,1,1
+		#on_focus: root.alterar_posicao()
+		multiline: True
+	
+	Image: # Imagem com um icone de botão personalizado
+		source: app.rp("assets/images/imagens/Botao.png")
+		pos_hint: {"top": 0.06, "right": 0.65}
+		size_hint:0.30, 0.04
+	
+	Button: # Cria um botão invisivel
+		text: "Enviar"
+		pos_hint: {"top": 0.06, "right":0.65}
+		size_hint:0.30,0.04
+		background_color:0,0,0,0 
+		# A funcionalidade de enviar a pergunta será criada quando a IA estiver em desenvolvimento
