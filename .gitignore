@@ -22,3 +22,6 @@ dist/
 
 # Arquivos de ambiente
 .env
+
+# Firebase
+*firebase-adminsdk*.json

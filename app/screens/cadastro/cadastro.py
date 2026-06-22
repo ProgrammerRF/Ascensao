@@ -18,6 +18,8 @@ from app.core.sessao.gerenciador_sessao import Sessao, sessao # contem a instanc
 
 from app.database.database import banco_de_dados
 
+import traceback
+
 # BASE_DIR representa o diretorio onde este arquivo .py está localizado 
 # __file__ caminho do arquivo atual
 # resolve() converte para caminho absoluto real
@@ -70,96 +72,107 @@ class Cadastro(Screen):
 		
 	def cadastrar(self): 
 	# A função cadastrar realiza o cadastro do usuario no sistema
-		email = self.ids['email'] # Captura as informações da entrada de dados email
-		email_cadastrado = banco_de_dados.ler_banco_de_dados("app.db","usuarios","email")
-		nome = self.ids['nome']  # Captura as informações da entrada de dados nome
-		senha1 = self.ids['senha1'] # Captura as informações da entrada de dados senha1
-		senha2 = self.ids['senha2'] # Captura as informações da entrada de dados senha2
-		erro = self.ids['erro'] # Captura as informações do texto erro
+		try:
+			email = self.ids['email'] # Captura as informações da entrada de dados email
+			print(f"email digitado {email.text}")
+			email_cadastrado = banco_de_dados.ler_banco_de_dados(banco="app.db",tabela="usuarios",info="email_novo",email=email.text)
+			nome = self.ids['nome']  # Captura as informações da entrada de dados nome
+			senha1 = self.ids['senha1'] # Captura as informações da entrada de dados senha1
+			senha2 = self.ids['senha2'] # Captura as informações da entrada de dados senha2
+			erro = self.ids['erro'] # Captura as informações do texto erro
 
-		if email.text == email_cadastrado:
-			# Se o email digitado já existir no banco de dados
-			erro.text = "E-mail já existe no sistema"
-			# Exibe essa mensagem de erro		
-			falar("Seu E-mail já está cadastrado", self.estado_audio())
-			# Notifica o usuario com espeak
-		elif email.text == "": 
-			# Se o email estiver vazio
-			erro.text = "Digite seu E-mail" 
-			# Exibe essa mensagem de erro
-			falar("Digite seu E-mail", self.estado_audio())
-			# Notifica o usuario com espeak
-		elif "@" not in email.text:
-			# Se o email não tiver @
-			erro.text = "O E-mail deve conter @"
-			# Exibe essa mensagem de erro
-			falar("Seu E-mail deve conter @", self.estado_audio())
-			# Notifica o usuario com espeak
-		elif ".com" not in email.text:
-			# Se o email não tiver .com
-			erro.text = "O E-mail deve conter .com"
-			# Exibe essa mensagem de erro	
-			falar("Seu E-mail deve conter .com", self.estado_audio())
-			# Notifica o usuario com espeak
-		elif " " in email.text:
-			erro.text = "O E-mail não pode ter espaços"
-			# Exibe a mensagem de erro
-			falar("Seu E-mail não pode ter espaços", self.estado_audio())
-			# Notifica o usuario com espeak
-			
-		elif nome.text == "":
-			# Se o nome estiver vazio
-			erro.text = "Digite seu nome"
-			# Exibe essa mensagem de erro
-			falar("Digite seu nome", self.estado_audio())
-			# Notifica o usuario usando espeak
-		elif senha1.text == "":
-			# Se a senha estiver vazia
-			erro.text = "Digite sua senha"
-			# Exibe essa mensagem de erro
-			falar("Digite sua senha", self.estado_audio())
-			# Notifica o usuario usando espeak
-		elif len(senha1.text) < 6:
-			# Se a senha tiver menos que 6 caracteres
-			erro.text = "Sua senha deve conter pelo menos 6 caracteres"
-			# Exibe essa mensagem de erro
-			falar("Sua senha deve conter pelo menos 6 caracteres", self.estado_audio())
-			# Notifica o usuario usando espeak
-		elif senha2.text == "":
-			# Se a senha estiver vazia
-			erro.text = "Digite sua senha novamente"
-			#Exibe essa mensagem de erro
-			falar("Digite sua senha novamente", self.estado_audio())
-			# Notifica o usuario usando o espeak
-		elif len(senha2.text) < 6:
-			# Se a senha tiver menos que 6 caracteres
-			erro.text = "Sua senha deve conter pelo menos 6 caracteres"
-			# Exibe a mensagem de erro
-			falar("Sua senha deve conter pelo menos 6 caracteres", self.estado_audio())
-			# Notifica o usuario com espeak
-		elif senha1.text != senha2.text:
-			# Se as senhas forem diferentes
-			erro.text = "As senhas devem ser iguais"
-			# Exibe essa mensagem
-			falar("As senhas devem ser iguais", self.estado_audio())
-			# Notifica o usuario com espeak
-		else: # Se todas as condições forem atendidas
-			erro.text = "" # o valor do texto fica vazio
+			print(f"OVER HERE STRANGER.... {email_cadastrado}")
+			print(email.text)
 
-			banco_de_dados.criar_banco_de_dados("app.db", "usuarios")
-			banco_de_dados.inserir_dados_banco_de_dados("app.db", "usuarios", nome.text, email.text, email.text, senha1.text)
-			sessao.definir_sessao_atual(email.text)
+			if email.text == email_cadastrado:
+				# Se o email digitado já existir no banco de dados
+				erro.text = "E-mail já existe no sistema"
+				# Exibe essa mensagem de erro
+				falar("Seu E-mail já está cadastrado", self.estado_audio())
+				# Notifica o usuario com espeak
+			elif email.text == "":
+				# Se o email estiver vazio
+				erro.text = "Digite seu E-mail"
+				# Exibe essa mensagem de erro
+				falar("Digite seu E-mail", self.estado_audio())
+				# Notifica o usuario com espeak
+			elif "@" not in email.text:
+				# Se o email não tiver @
+				erro.text = "O E-mail deve conter @"
+				# Exibe essa mensagem de erro
+				falar("Seu E-mail deve conter @", self.estado_audio())
+				# Notifica o usuario com espeak
+			elif ".com" not in email.text:
+				# Se o email não tiver .com
+				erro.text = "O E-mail deve conter .com"
+				# Exibe essa mensagem de erro
+				falar("Seu E-mail deve conter .com", self.estado_audio())
+				# Notifica o usuario com espeak
+			elif " " in email.text:
+				erro.text = "O E-mail não pode ter espaços"
+				# Exibe a mensagem de erro
+				falar("Seu E-mail não pode ter espaços", self.estado_audio())
+				# Notifica o usuario com espeak
 
-			# Limpa os campos do formulario
-			email.text = ""
-			nome.text = ""
-			senha1.text = ""
-			senha2.text = ""
-			
-			# Desabilita o botão de cadastro
-			self.botao.disabled = True
+			elif nome.text == "":
+				# Se o nome estiver vazio
+				erro.text = "Digite seu nome"
+				# Exibe essa mensagem de erro
+				falar("Digite seu nome", self.estado_audio())
+				# Notifica o usuario usando espeak
+			elif senha1.text == "":
+				# Se a senha estiver vazia
+				erro.text = "Digite sua senha"
+				# Exibe essa mensagem de erro
+				falar("Digite sua senha", self.estado_audio())
+				# Notifica o usuario usando espeak
+			elif len(senha1.text) < 6:
+				# Se a senha tiver menos que 6 caracteres
+				erro.text = "Sua senha deve conter pelo menos 6 caracteres"
+				# Exibe essa mensagem de erro
+				falar("Sua senha deve conter pelo menos 6 caracteres", self.estado_audio())
+				# Notifica o usuario usando espeak
+			elif senha2.text == "":
+				# Se a senha estiver vazia
+				erro.text = "Digite sua senha novamente"
+				#Exibe essa mensagem de erro
+				falar("Digite sua senha novamente", self.estado_audio())
+				# Notifica o usuario usando o espeak
+			elif len(senha2.text) < 6:
+				# Se a senha tiver menos que 6 caracteres
+				erro.text = "Sua senha deve conter pelo menos 6 caracteres"
+				# Exibe a mensagem de erro
+				falar("Sua senha deve conter pelo menos 6 caracteres", self.estado_audio())
+				# Notifica o usuario com espeak
+			elif senha1.text != senha2.text:
+				# Se as senhas forem diferentes
+				erro.text = "As senhas devem ser iguais"
+				# Exibe essa mensagem
+				falar("As senhas devem ser iguais", self.estado_audio())
+				# Notifica o usuario com espeak
+			else: # Se todas as condições forem atendidas
+				erro.text = "" # o valor do texto fica vazio
 
-			return True
+				print(email.text)
+
+				banco_de_dados.criar_banco_de_dados("app.db", "usuarios")
+				banco_de_dados.inserir_dados_banco_de_dados("app.db", "usuarios", nome.text, email.text, email.text, senha1.text)
+				sessao.definir_sessao_atual(email.text)
+
+
+
+				# Limpa os campos do formulario
+				email.text = ""
+				nome.text = ""
+				senha1.text = ""
+				senha2.text = ""
+
+				# Desabilita o botão de cadastro
+				self.botao.disabled = True
+
+				return True
+		except Exception as e:
+			print(traceback.format_exception(e))
 		
 	def mostrarsenha1(self): # Função que altera o icone e valor boleano da entrada de dados senha1
 		senha1 = self.ids["senha1"] # Armazena os atributos do entrada de dados senha1 
