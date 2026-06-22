@@ -179,14 +179,14 @@ class Login(Screen): # Classe Login herda as funcionalidades da classe Screen
 		print(f"[Login.py] [Line 184] [Estado Global De Audio] {estado}")
 		if estado == "0":
 		# Se o valor for igual a 0:
-			falar("Sistema de audio desativado", self.estado_audio())
+			falar("Sistema de áudio desativado", self.estado_audio())
 			self.novo_estado_audio.set_state(1) # Altera o valor global para 1
 			self.ids["ativar_audio"].source = str(resource_path("assets/icons/desativar_audio.png")) # altera o icone para desativar_audio.png
 		else:
 		# Se o valor for diferente de 0
 			self.novo_estado_audio.set_state(0) # Altera o valor para 0
 			self.ids["ativar_audio"].source = str(resource_path("assets/icons/ativar_audio.png")) # altera o icone para ativar_audio.png
-			falar("Sistema de audio ativado", self.estado_audio())
+			falar("Sistema de áudio ativado", self.estado_audio())
 			
 			
 		

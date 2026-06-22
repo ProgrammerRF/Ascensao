@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('app\\screens', 'app\\screens'), ('assets', 'assets'), ('app\\database\\app.db', 'app\\database'), ('app\\database\\inteligencia-artificial-37d91-firebase-adminsdk-fbsvc-3dfaf7966d.json', 'app\\database'), ('bin\\espeak', 'bin\\espeak')],
+    datas=[('app\\screens', 'app\\screens'), ('assets', 'assets'), ('app\\database\\app.db', 'app\\database'), ('app\\database\\inteligencia-artificial-37d91-firebase-adminsdk-fbsvc-3dfaf7966d.json', 'app\\database'), ('bin\\espeak', 'bin\\espeak'), ('bin\\piper', 'bin\\piper')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

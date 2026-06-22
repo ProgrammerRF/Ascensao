@@ -1,5 +1,7 @@
 from pathlib import Path
 import sqlite3
+import traceback
+from app.core.utils import resource_path
 
 APP_DIR = Path.home() / "Ascensao"
 APP_DIR.mkdir(exist_ok=True)
@@ -11,7 +13,8 @@ class BancoDeDados():
 
 	def conectar(self, banco):
 		try:
-			return sqlite3.connect(str(DATABASE / banco))
+			print((str(resource_path(fr"app\database\{banco}"))))
+			return sqlite3.connect((str(resource_path(fr"app\database\{banco}"))))
 		except Exception as e:
 			print(f"\n[database.py] [BancoDeDados] [conectar] [LINE 13] [ERROR] --> {e}\n")
 
@@ -41,7 +44,7 @@ class BancoDeDados():
 		try:
 			con = self.conectar(banco)
 			cur = con.cursor()
-			cur.execute(f"INSERT INTO {tabela} (nome, email_antigo, email_novo, senha) VALUES (?, ?, ?, ?)", (nome, email_antigo, email_novo, senha,))
+			cur.execute(f"INSERT INTO {tabela} (nome, email_antigo, email_novo, senha) VALUES (?, ?, ?, ?)", (nome,email_antigo, email_novo, senha,))
 
 			con.commit()
 			con.close()
@@ -103,6 +106,7 @@ class BancoDeDados():
 			elif info == "email_novo":
 				cur.execute(f"SELECT * FROM {tabela} WHERE EMAIL_NOVO == (?)", (email,))
 				emails_novos = cur.fetchall()
+				print(emails_novos)
 				for email_novo in emails_novos:
 					return email_novo[3]
 
@@ -125,6 +129,8 @@ class BancoDeDados():
 		except sqlite3.OperationalError as e:
 			print(f"[database.py] [BancoDeDados] [ler_banco_de_dados] [LINES 87 UNTIL 120] [ERROR] --> {e}")
 			self.criar_banco_de_dados("app.db", "usuarios")
+		except ValueError as e:
+			print(traceback.format_exception(e))
 		finally:
 			con.close()
 

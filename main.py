@@ -15,7 +15,8 @@ from app.screens.login import login # importa o conteudo do arquivo login.py
 from app.screens.cadastro import cadastro # importa o conteudo do arquivo cadastro.py
 from app.screens.principal import principal # Importa a tela principal
 from app.screens.configuracao import configuracao # Importa a tela de configurações
-from app.screens.alterar_dados import alterar_dados # Importa a tela de alterar dados cadatrais
+from app.screens.alterar_dados import alterar_dados
+# Importa a tela de alterar dados cadatrais
 from kivy.clock import Clock # Clock é usado para oruqestrar eventos
 from kivy.uix.screenmanager import ScreenManager # Screenmanager é usado para gerenciamento de telas
 from kivy.lang import Builder # Builder é usado para acessar o conteudo de arquivos.kv
