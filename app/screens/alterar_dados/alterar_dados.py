@@ -75,25 +75,25 @@ class Alterar_Dados(Screen): # Atualiza os dados dos usuarios cadastrados no SQL
 		senha_nova = self.ids["senha"] # Armazena o id da entrada de dados senha
 		erro = self.ids["erro"] # armazena o id do label erro
 		
-		if email_novo.text == "" and nome_novo.text == "" and senha_nova.text == "": # Se todos os campos estiverem vazios:
+		if email_novo.text.lower() == "" and nome_novo.text.capitalize() == "" and senha_nova.text == "": # Se todos os campos estiverem vazios:
 			erro.text = "Preencha os campos do formulário" # Mostrar essa mensagem de erro
 			falar("Preencha os campos do formulário", self.estado_audio_global()) # Notifica o usuario por voz usando espeak
-		elif email_novo.text == "": # Se o campo email estiver vazio:
+		elif email_novo.text.lower() == "": # Se o campo email estiver vazio:
 			erro.text = "Digite seu email" # Mostra uma mensagem de erro
 			falar("Digite seu email", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
-		elif "@" not in email_novo.text: # Se o campo email não tiver @:
+		elif "@" not in email_novo.text.lower(): # Se o campo email não tiver @:
 			erro.text = "Seu email deve conter @" # Mostrar uma mensagem de erro
 			falar("Seu email deve conter @", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
-		elif ".com" not in email_novo.text: # Se o campo email não tiver .com:
+		elif ".com" not in email_novo.text.lower(): # Se o campo email não tiver .com:
 			erro.text = "Seu email deve conter .com" # Mostrar uma mensagem de erro
 			falar("Seu email deve conter .com", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
-		elif " " in email_novo.text: # Se o campo email tiver espaços:
+		elif " " in email_novo.text.lower(): # Se o campo email tiver espaços:
 			erro.text = "Seu email não pode conter espaços" # Mostra uma mensagem de erro
 			falar("Seu email não pode conter espaços", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
-		elif nome_novo.text == "": # Se o campo nome estiver vazio:
+		elif nome_novo.text.capitalize() == "": # Se o campo nome estiver vazio:
 			erro.text = "Digite seu nome" # Mostra uma mensagem de erro
 			falar("Digite seu nome", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
-		elif " " in nome_novo.text: # Se houver espaços no nome:
+		elif " " in nome_novo.text.capitalize(): # Se houver espaços no nome:
 			erro.text = "Seu nome não pode conter espaços" # Mostra uma mensagem de erro
 			falar("Seu nome não pode conter espaços", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
 		elif senha_nova.text == "": # Se o campo senha estiver vazio:
@@ -107,7 +107,7 @@ class Alterar_Dados(Screen): # Atualiza os dados dos usuarios cadastrados no SQL
 			falar("Sua senha deve ter pelo menos 6 digitos", self.estado_audio_global()) # Notifica o usuario por voz usando o espeak
 		else: # Se não houverem erros:
 			erro.text = "" # Apaga a mensagem de erro
-			if email_novo.text == self.email_novo and nome_novo.text == self.nome_antigo and senha_nova.text == self.senha_antiga:
+			if email_novo.text.lower() == self.email_novo and nome_novo.text.capitalize() == self.nome_antigo and senha_nova.text == self.senha_antiga:
 				pass
 			else:
 				self.sincronia_atualizacao()
@@ -118,15 +118,15 @@ class Alterar_Dados(Screen): # Atualiza os dados dos usuarios cadastrados no SQL
 		email_novo = self.ids["email_novo"] # Armazena o id da entrada de dados email
 		senha_nova = self.ids["senha"] # Armazena o id da entrada de dados senha
 
-		if email_novo.text == self.email_novo:
+		if email_novo.text.lower() == self.email_novo:
 			pass
 		else:
-			banco_de_dados.atualizar_email("app.db", "usuarios", self.email_antigo, self.email_novo, email_novo.text)
+			banco_de_dados.atualizar_email("app.db", "usuarios", self.email_antigo, self.email_novo, email_novo.text.lower())
 
-		if nome_novo.text == self.nome_antigo:
+		if nome_novo.text.capitalize() == self.nome_antigo:
 			pass
 		else:
-			banco_de_dados.atualizar_nome("app.db", "usuarios", self.email_novo, nome_novo.text)
+			banco_de_dados.atualizar_nome("app.db", "usuarios", self.email_novo, nome_novo.text.capitalize())
 
 		if senha_nova.text == self.senha_antiga:
 			pass
@@ -136,7 +136,7 @@ class Alterar_Dados(Screen): # Atualiza os dados dos usuarios cadastrados no SQL
 
 		#banco_de_dados.atualizar_banco_de_dados("app.db", "usuarios", self.email_antigo, self.email_novo, email_novo.text, self.nome_antigo, nome_novo.text, self.senha_antiga, senha_nova.text)
 
-		sessao.definir_sessao_atual(email_novo.text) # Define a sessao atual passando o novo email
+		sessao.definir_sessao_atual(email_novo.text.lower()) # Define a sessao atual passando o novo email
 					
 		self.botao.disabled = True # Desabilita o botão
 		falar("Dados alterados com sucesso", self.estado_audio_global())

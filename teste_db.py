@@ -26,3 +26,7 @@ def threading_falar(texto, estado):
 				sound.play()
 	except Exception as e:
 		print(f"[Gerenciador_de_audios] [Erro] {traceback.format_exception(e)} [Linha] 17\n")
+
+
+texto = "ASCENSAO TESTE"
+print(texto.capitalize())

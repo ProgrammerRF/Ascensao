@@ -75,7 +75,7 @@ class Cadastro(Screen):
 		try:
 			email = self.ids['email'] # Captura as informações da entrada de dados email
 			print(f"email digitado {email.text}")
-			email_cadastrado = banco_de_dados.ler_banco_de_dados(banco="app.db",tabela="usuarios",info="email_novo",email=email.text)
+			email_cadastrado = banco_de_dados.ler_banco_de_dados(banco="app.db",tabela="usuarios",info="email_novo",email=email.text.lower())
 			nome = self.ids['nome']  # Captura as informações da entrada de dados nome
 			senha1 = self.ids['senha1'] # Captura as informações da entrada de dados senha1
 			senha2 = self.ids['senha2'] # Captura as informações da entrada de dados senha2
@@ -84,31 +84,31 @@ class Cadastro(Screen):
 			print(f"OVER HERE STRANGER.... {email_cadastrado}")
 			print(email.text)
 
-			if email.text == email_cadastrado:
+			if email.text.lower() == email_cadastrado:
 				# Se o email digitado já existir no banco de dados
 				erro.text = "E-mail já existe no sistema"
 				# Exibe essa mensagem de erro
 				falar("Seu E-mail já está cadastrado", self.estado_audio())
 				# Notifica o usuario com espeak
-			elif email.text == "":
+			elif email.text.lower() == "":
 				# Se o email estiver vazio
 				erro.text = "Digite seu E-mail"
 				# Exibe essa mensagem de erro
 				falar("Digite seu E-mail", self.estado_audio())
 				# Notifica o usuario com espeak
-			elif "@" not in email.text:
+			elif "@" not in email.text.lower():
 				# Se o email não tiver @
 				erro.text = "O E-mail deve conter @"
 				# Exibe essa mensagem de erro
 				falar("Seu E-mail deve conter @", self.estado_audio())
 				# Notifica o usuario com espeak
-			elif ".com" not in email.text:
+			elif ".com" not in email.text.lower():
 				# Se o email não tiver .com
 				erro.text = "O E-mail deve conter .com"
 				# Exibe essa mensagem de erro
 				falar("Seu E-mail deve conter .com", self.estado_audio())
 				# Notifica o usuario com espeak
-			elif " " in email.text:
+			elif " " in email.text.lower():
 				erro.text = "O E-mail não pode ter espaços"
 				# Exibe a mensagem de erro
 				falar("Seu E-mail não pode ter espaços", self.estado_audio())
@@ -156,8 +156,8 @@ class Cadastro(Screen):
 				print(email.text)
 
 				banco_de_dados.criar_banco_de_dados("app.db", "usuarios")
-				banco_de_dados.inserir_dados_banco_de_dados("app.db", "usuarios", nome.text, email.text, email.text, senha1.text)
-				sessao.definir_sessao_atual(email.text)
+				banco_de_dados.inserir_dados_banco_de_dados("app.db", "usuarios", nome.text.capitalize(), email.text.lower(), email.text.lower(), senha1.text)
+				sessao.definir_sessao_atual(email.text.lower())
 
 
 
