@@ -91,30 +91,30 @@ class Login(Screen): # Classe Login herda as funcionalidades da classe Screen
 		
 	def validar(self): # Executa a função validar
 		email = self.ids['email'] # Acessa a entrada de dados que recebe o email do usuario
-		email_cadastrado = banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "email_novo",email.text)
-		senha_cadastrada = banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "senha", email.text)
+		email_cadastrado = banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "email_novo",email.text.lower())
+		senha_cadastrada = banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "senha", email.text.lower())
 		senha = self.ids['senha'] # Acessa a entrada de dados que recebe a senha do usuario
 		erro = self.ids['erro'] # Acessa o label que mostra uma mensagem de erro para o usuario
 			
-		if email.text == "" and senha.text == "": 
+		if email.text.lower() == "" and senha.text == "":
 		# Se o email e senha estiverem vazios
 			erro.text = "Digite seu E-mail e sua senha" 
 			# Essa mensagem de erro é mostrada
 			falar("Digite seu E-mail e sua senha", self.estado_audio()) # Usa a voz para pedir ao usuario que digite o email e a senha 
 			# Notifica o usuario com espeak
-		elif email.text == "": 
+		elif email.text.lower() == "":
 		# Se o email estiver vazio
 			erro.text = "Digite seu E-mail"
 			# Essa mensagem de erro aparece
 			falar("Digite seu E-mail", self.estado_audio())
 			# Notifica o usuario com espeak
-		elif "@" not in email.text:
+		elif "@" not in email.text.lower():
 		# Se o email não tiver @
 			erro.text = "O E-mail deve conter @"
 			# Essa mensagem de erro aparece
 			falar("Seu E-mail deve conter @", self.estado_audio())
 			# Notifica o usuario com espeak
-		elif ".com" not in email.text:
+		elif ".com" not in email.text.lower():
 		# Se o email não tiver .com
 			erro.text = "O E-mail deve conter .com" 
 			# Essa mensagem de erro aparece
@@ -131,13 +131,13 @@ class Login(Screen): # Classe Login herda as funcionalidades da classe Screen
 			# Essa mensagem de erro aparece
 			falar("Sua senha deve conter pelo menos 6 caracteres", self.estado_audio())
 			# Notifica o usuario com espeak
-		elif email.text != email_cadastrado: 
+		elif email.text.lower() != email_cadastrado:
 		# Se o Email digitado pelo usuario for diferente dos emails cadastrados no banco de dados
 			erro.text = "Email não cadastrado"
 			# Essa mensagem de erro aparece
 			falar("Email não cadastrado", self.estado_audio())
 			# Notifica o usuario.com espeak
-		elif email.text == email_cadastrado: 
+		elif email.text.lower() == email_cadastrado:
 		# Se o email digitado pelo usuario estiver no banco de dados:
 			if senha.text != senha_cadastrada:
 			# Porém, se a senha estiver errada:
@@ -149,7 +149,7 @@ class Login(Screen): # Classe Login herda as funcionalidades da classe Screen
 			# Se estiver tudo certo
 				self.botao.disabled = True # Desabilita o.botão
 				erro.text = "" # Limpa as mensagens de erro
-				self.sessao.definir_sessao_atual(email.text) # Define a sessao atual
+				self.sessao.definir_sessao_atual(email.text.lower()) # Define a sessao atual
 				email.text = "" # Limpa o campo email
 				senha.text = "" # Limpa o campo senha
 				return True

@@ -28,7 +28,8 @@ class Principal(Screen): # Principal herda da superclasse Screen
 		self.usuario_logado = self.ids["usuario"]
 
 		email_usuario = sessao.ver_sessao_atual()
-		nome_usuario = banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "nome", email_usuario)
+		nome_usuario = str(banco_de_dados.ler_banco_de_dados("app.db", "usuarios", "nome", email_usuario))
+		print(nome_usuario)
 		self.usuario_logado.text = nome_usuario
 		falar(f"Olá, {nome_usuario}. Como posso te ajudar hoje?", self.estado_audio())
 
