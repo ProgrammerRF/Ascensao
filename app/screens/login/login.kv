@@ -10,7 +10,7 @@
 			Rectangle:
 				pos:self.pos
 				size:self.size
-			    source: app.rp("assets/images/imagens/aurora.jpg")
+			    source: app.rp("assets/images/imagens/aurora5.png")
 
 		# Texto de saida
 		Label:
@@ -39,46 +39,34 @@
 			size_hint:0.07, 0.07
 			background_color:0,0,0,0
 			on_press: root.alterar_estado()
-	
-		# Titulo
-		Label:
-			text: "Ascensão"
-			color:0,1,0,1
-			pos_hint:{"top": 1.30, "right":1}
-			size_hint:1,1
-			font_size:50
 		
 		# Entrada de dados
 		# Email
 		TextInput:
 			id: email
 			hint_text:"Digite seu E-mail"
-			pos_hint:{"top": 0.60, "right":0.73}
-			size_hint:0.45,0.06
+			pos_hint:{"top": 0.42, "right":0.87}
+			size_hint:0.23,0.06
 			multiline: False
+			background_color:0,0,0,0
+			foreground_color: 1,1,1,1
 			
 		# Entrada de dados que recebe a senha
 		TextInput:
 			id: senha
 			hint_text:"Digite sua senha"
-			pos_hint:{"top": 0.48, "right":0.73}
-			size_hint:0.45,0.06
+			pos_hint:{"top": 0.34, "right":0.87}
+			size_hint:0.23,0.06
 			multiline: False
 			password: True
-		
-		# Icone de mostrar/esconder senha da entrada de dados senha
-		Image:
-			id: icone_senha
-			source:app.rp("assets/icons/mostrarsenha.png")
-			pos_hint:{"top": 0.47, "right": 1.20}
-			size_hint:1, 0.03
-			
+			background_color:0,0,0,0
+			foreground_color:1,1,1,1
 		
 		# Botão invisível que executa a mudança do icone de mostrar/esconder senha e altera o valor boleano do password da senha
 		Button:
 			text:""
-			pos_hint:{"top": 0.47, "right": 0.72}
-			size_hint: 0.05, 0.04
+			pos_hint:{"top": 0.34, "right": 0.86}
+			size_hint: 0.03, 0.04
 			background_color: 0,0,0,0
 			on_press: root.mostrarsenha()
 			
@@ -88,37 +76,23 @@
 			id: erro
 			text: ""
 			color:1,0,0,1
-			pos_hint: {"top": 0.41, "right": 1}
+			pos_hint: {"top": 0.08, "right": 1}
 			size_hint: 1, 0.05
 			font_size:28
 		
-		#  Botões 
-		
-		# Imagem do botao de login
-		Image:
-			source: app.rp("assets/images/imagens/Botao.png")
-			pos_hint:{"top": 0.35, "right": 0.60}
-			size_hint: 0.35, 0.06
+		#  Botões
 			
 		# Botão de login
 		Button:
 			id:login
-			text: "Login"
-			pos_hint:{"top": 0.35, "right": 0.49}
+			pos_hint:{"top": 0.27, "right": 0.872}
 			size_hint: 0.13, 0.06
 			background_color: 0,0,0,0
 			on_press: app.alterar_tela("principal") if root.validar() == True else print("erro") # Executa a função validar quando o botão é pressionado
-			
-		# Imagem do botao de cadastro 
-		Image:
-			source: app.rp("assets/images/imagens/Botao.png")
-			pos_hint:{"top": 0.35, "right": 0.75}
-			size_hint: 0.35, 0.06
 		
 		# Botão de cadastro
 		Button:
-			text: "Cadastro"
-			pos_hint:{"top": 0.35, "right": 0.64}
+			pos_hint:{"top": 0.27, "right": 0.725}
 			size_hint: 0.13, 0.06
 			background_color:0,0,0,0
 			on_press: app.alterar_tela("cadastro")

@@ -59,22 +59,24 @@ class Principal(Screen): # Principal herda da superclasse Screen
 	def keyboard(self, window, key, *args): # Altera a funcionalidade da tecla 27
 		if key == 27: # Se a tecla 27 for pressionada
 			self.saida() # Chama a função saida
-		return True # retorna um valor booleano verdadeiro
+			return True # retorna um valor booleano verdadeiro
+		else:
+			pass
 	
 	def saida(self): # Essa função mostra um PopUp com animação confirmando se o usuario quer ou não sair do aplicativo
 		float = FloatLayout() # Cria um container
-		btn1 = Button(text="Sim", pos_hint={"top": 0.70, "right": 0.45}, size_hint=(0.40, 0.40), background_color=(0,0,0,0)) # Confirma que o usuario quer sair
+		btn1 = Button(pos_hint={"top": 0.70, "right": 0.45}, size_hint=(0.40, 0.40), background_color=(0,0,0,0)) # Confirma que o usuario quer sair
 		btn1.bind(on_press=self.sair) # Executa a função sair quando o botão é presionado
-		btn1_img = Image(source=str(resource_path("assets/images/imagens/Botao.png")), pos_hint={"top": 0.70, "right": 0.45},size_hint=(0.40, 0.40)) # Adiciona uma imagem de fundo na mesma posição do btn1
-		btn2 = Button(text="Não", pos_hint={"top": 0.70, "right": 0.95}, size_hint=(0.40, 0.40), background_color=(0,0,0,0)) # Confirma que o usuario não quer sair
+		btn1_img = Image(source=str(resource_path("assets/images/imagens/btns.png")), pos_hint={"top": 0.70, "right": 0.45},size_hint=(0.40, 0.40)) # Adiciona uma imagem de fundo na mesma posição do btn1
+		btn2 = Button(pos_hint={"top": 0.70, "right": 0.95}, size_hint=(0.40, 0.40), background_color=(0,0,0,0)) # Confirma que o usuario não quer sair
 		btn2.bind(on_press=self.voltar) # Conecta o evento de dismiss ao botão btn2
-		btn2_img = Image(source=str(resource_path("assets/images/imagens/Botao.png")), pos_hint={"top": 0.70, "right": 0.95}, size_hint=(0.40, 0.40)) # Adiciona uma imagem de fundo na mesma posição btn2
+		btn2_img = Image(source=str(resource_path("assets/images/imagens/btnn.png")), pos_hint={"top": 0.70, "right": 0.95}, size_hint=(0.40, 0.40)) # Adiciona uma imagem de fundo na mesma posição btn2
 		float.add_widget(btn1_img) # Adiciona a imagem do botão btn1 no layout
 		float.add_widget(btn1) # Adiciona o botão Sim no containe
 		float.add_widget(btn2_img) # Adiciona a imagem do botão btn2 no layout
 		float.add_widget(btn2) # Adiciona o botão Sair no container
 		
-		self.pop = Popup(title="Você realmente quer sair? ", title_size=(30), title_align=('center'), title_color=(0,1,0,1), content=float, pos_hint={"top":0.63, "right":0.65}, size_hint=(0.30,0.25), background=str(resource_path("assets/images/imagens/aurora.jpg"))) # Cria o Popup
+		self.pop = Popup(title="Você realmente quer sair? ", title_size=(25), title_align=('center'), title_color=(1,1,1,1), content=float, pos_hint={"top":0.65, "right":0.65}, size_hint=(0.30,0.25), background=str(resource_path("assets/images/imagens/aurora4.png"))) # Cria o Popup
 		falar("Você realmente deseja sair?", self.estado_audio())
 		self.pop.open() # Executa o Popup
 		

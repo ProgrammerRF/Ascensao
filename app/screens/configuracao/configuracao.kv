@@ -11,47 +11,19 @@
 			Rectangle:
 				pos: self.pos
 				size: self.size
-				source:app.rp("assets/images/imagens/aurora.jpg")
-		
-		# Texto que aparece no canto superior esquerdo
-		Label:
-			text:"Voltar"
-			pos_hint:{"top":1.43,"right":0.60}
-			size_hint:1,1
-			font_size:28
+				source:app.rp("assets/images/imagens/auroracon.png")
 		
 		# Botão invisivel na mesma posição do texto voltar que volta para a tela principal quando pressionado
 		Button:
-			pos_hint:{"top": 0.96, "right": 0.18}
+			pos_hint:{"top": 0.96, "right": 0.16}
 			size_hint:0.15, 0.05
 			background_color:0,0,0,0
 			on_press: app.alterar_tela("principal")
 		
-		# Titulo que aparece no canto superior da tela
-		Label:
-			text:"Ascensão"
-			color:0,1,0,1
-			pos_hint:{"top":1.30, "right":1}
-			size_hint:1,1
-			font_size:50
-		
-		# Icone de botão 
-		Image:
-			pos_hint:{"top":0.50, "right":0.69}
-			size_hint:0.37,0.07
-			allow_stretch:True
-			source: app.rp("assets/images/imagens/Botao.png")
-		
-		# Texto que aparece por cima do icone de botão
-		Label:
-			text:"Alterar dados cadastrais"
-			pos_hint:{"top": 0.97, "right": 1.004}
-			size_hint:1,1
-		
 		# Botão invisivel na mesma posição do icone e texto alterar dados cadastrais que muda para a tela alterar_dados quando pressionado
 		Button:
-			pos_hint:{"top": 0.494, "right": 0.58}
-			size_hint:0.15,0.05
+			pos_hint:{"top": 0.380, "right": 0.70}
+			size_hint:0.40,0.05
 			background_color:0,0,0,0
 			on_press: app.alterar_tela("alterar_dados")
 		

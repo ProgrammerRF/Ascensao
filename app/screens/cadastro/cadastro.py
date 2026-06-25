@@ -175,18 +175,15 @@ class Cadastro(Screen):
 			print(traceback.format_exception(e))
 		
 	def mostrarsenha1(self): # Função que altera o icone e valor boleano da entrada de dados senha1
-		senha1 = self.ids["senha1"] # Armazena os atributos do entrada de dados senha1 
-		imagem_senha1 = self.ids["imagem_senha1"] # Armazena os atributos da imagem_senha1
+		senha1 = self.ids["senha1"] # Armazena os atributos do entrada de dados senha1
 		
 		if 0 in self.id_estado_senha1: 
 		# Se o valor da variavel id_estado_senha1 for igual a 0:
-			imagem_senha1.source=str(resource_path("assets/icons/ocultarsenha.png")) # Muda o icone da entrada de dados
 			senha1.password=False # mostra a senha
 			self.id_estado_senha1.clear() # Limpa a lista
 			self.id_estado_senha1.append(1) # Adiciona o numero 1 a lista
 		else: 
 		# Se o valor da variavel id_estado_senha1 for igual a 1:
-			imagem_senha1.source=str(resource_path("assets/icons/mostrarsenha.png")) # Muda o icone da entrada de dados
 			senha1.password=True # Esconde a senha
 			self.id_estado_senha1.clear() # Limpa a lista
 			self.id_estado_senha1.append(0) # Adiciona o numero 0 a lista
@@ -194,17 +191,14 @@ class Cadastro(Screen):
 	def mostrarsenha2(self):
 		# Função que altera o icone e valor boleano da entrada de dados senha2
 		senha2 = self.ids["senha2"] # Armazena os atributos do entrada de dados senha2
-		imagem_senha2 = self.ids["imagem_senha2"] # Armazena os atributos da imagem_senha2
 		
 		if 0 in self.id_estado_senha2:
 		# Se o valor da variavel id_estado_senha2 for igual a 0:
-			imagem_senha2.source=str(resource_path("assets/icons/ocultarsenha.png")) # Muda o icone da entrada de dados
 			senha2.password=False # mostra a senha
 			self.id_estado_senha2.clear() # Limpa a lista
 			self.id_estado_senha2.append(1) # Adiciona o numero 1 a lista
 		else: 
 		# Se o valor da variavel id_estado_senha2 for igual a 1:
-			imagem_senha2.source=str(resource_path("assets/icons/mostrarsenha.png")) # Muda o icone da entrada de dados
 			senha2.password=True # Esconde a senha
 			self.id_estado_senha2.clear() # Limpa a lista
 			self.id_estado_senha2.append(0) # Adiciona o numero 0 a lista
