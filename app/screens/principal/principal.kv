@@ -10,28 +10,17 @@
 			Rectangle: # Cria um.retangulo
 				pos: self.pos # define a posição baseada na posição do layout
 				size: self.size # Define o tamanho baseado no tamanho do layout
-				source: app.rp("assets/images/imagens/aurora.jpg") # corrige o caminho relativo usando a função app.rp que leva a imagem
-	
-	Label: # Cria um texto com a mensagem sair no canto superior esquerdo
-		text:"Sair"
-		pos_hint:{"top":1.43,"right":0.60}
-		size_hint:1,1
-		font_size:28
+				source: app.rp("assets/images/imagens/aurorap.png") # corrige o caminho relativo usando a função app.rp que leva a imagem
 	
 	Button: # Cria um botao invisivel na mesma posição do texto acima chamando a função saida quando pressionado
-		pos_hint:{"top":0.95,"right":0.18}
+		pos_hint:{"top":0.95,"right":0.16}
 		size_hint:0.15, 0.04
 		background_color:0,0,0,0
 		on_press: root.saida()
-	
-	Image: # Adiciona um icone com a foto de perfil no canto superior direito
-		source: app.rp("assets/images/foto_usuario/foto1.png")
-		pos_hint:{"top": 0.96, "right": 0.92}
-		size_hint:0.08, 0.08
 
 	# Botão invisivel na mesma posição da foto de perfil que muda para a tela de configurações quando pressionado
 	Button:
-		pos_hint:{"top": 0.96, "right": 0.90}
+		pos_hint:{"top": 0.98, "right": 0.95}
 		size_hint:0.04, 0.10
 		background_color:0,0,0,0
 		on_press: app.alterar_tela("configuracao")
@@ -39,15 +28,8 @@
 	Label: # Cria um texto que contem o nome do usuario
 		id: usuario
 		text:""
-		pos_hint:{"top":1.35, "right":1.38}
+		pos_hint:{"top":1.35, "right":1.43}
 		size_hint:1,1
-			 
-	Label: # Nome do projeto que aparece no top da tela
-		text:"Ascensão"
-		pos_hint:{"top":1.30, "right":1}
-		size_hint:1,1
-		color:0,1,0,1
-		font_size:50
 	
 	ScrollView: # Adiciona os widgets do BoxLayout em um scrollView
 		id: scroll
@@ -75,22 +57,16 @@
 	
 	TextInput: # Entrada de dados que recebe as perguntas do usuario e altera a posição quando pressinado
 		id:pergunta
-		pos_hint:{"top": 0.18, "right": 0.73}
+		pos_hint:{"top": 0.16, "right": 0.78}
 		size_hint:0.45,0.08
 		hint_text: "Digite algo..."
-		background_color:0.3,0.3,0.3,1
+		background_color:0,0,0,0
 		foreground_color:1,1,1,1
 		#on_focus: root.alterar_posicao()
 		multiline: True
 	
-	Image: # Imagem com um icone de botão personalizado
-		source: app.rp("assets/images/imagens/Botao.png")
-		pos_hint: {"top": 0.06, "right": 0.65}
-		size_hint:0.30, 0.04
-	
 	Button: # Cria um botão invisivel
-		text: "Enviar"
-		pos_hint: {"top": 0.06, "right":0.65}
-		size_hint:0.30,0.04
-		background_color:0,0,0,0 
+		pos_hint: {"top": 0.08, "right":0.65}
+		size_hint:0.30,0.05
+		background_color:0,0,0,0
 		# A funcionalidade de enviar a pergunta será criada quando a IA estiver em desenvolvimento

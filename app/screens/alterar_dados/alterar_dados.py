@@ -54,17 +54,14 @@ class Alterar_Dados(Screen): # Atualiza os dados dos usuarios cadastrados no SQL
 	
 	def mostrar_senha(self): # Altera o valor booleano do atributo password da entrada de dadoa senha e o icone de mostrar/ocultar senha
 		senha = self.ids["senha"] # Armazena o id da entrada de dados senha
-		icone = self.ids["icone"] # Armazena o id do icone mostrar/ocultar senha
 		estado = str(self.mostrar_ocultar_senha) # Converte para string o valor numerico (entre 0 e 1) armazenado no atributo da classe (self.mostrar_ocultar_senha)
 		estado_formatado = estado.replace("[","").replace("]","").replace("'","") # Remove colchetes e aspas
 		
 		if estado_formatado == "0": # Se o valor numerico do atributo da classe for 0:
 			senha.password = False # Altera o valor booleano da senha para False (mostrando a senha)
-			icone.source = str(resource_path("assets/icons/ocultarsenha.png")) # Converte para string o caminho relativo corrigido e altera o icone mostarsenha.png para o icone ocultarsenha.png 
 			self.mostrar_ocultar_senha.clear() # Limpa a lista
 			self.mostrar_ocultar_senha.append(1) # Adiciona o valor numerico 1 a lista
 		else: # Se o valor numerico do atributo for diferente de 0:
-			icone.source = str(resource_path("assets/icons/mostrarsenha.png")) # Converte para string o caminho relativo corrigido e altera o icone ocultarsenha.png para mostrarsenha.png
 			senha.password = True # Altera o valor booleano do atributo password da senha para True (ocultando a senha)
 			self.mostrar_ocultar_senha.clear() # Limpa a lista
 			self.mostrar_ocultar_senha.append(0) # Adiciona o valor numerico 0 na lista
