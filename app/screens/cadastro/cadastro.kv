@@ -11,7 +11,7 @@
 			Rectangle:
 				pos:self.pos
 				size:self.size
-				source: app.rp("assets/images/imagens/aurorac2.png")
+				source: app.rp("assets/images/imagens/auroracadastro.png")
 		
 		# Botão do texto de voltar
 		Button:
@@ -25,7 +25,7 @@
 		TextInput:
 			id: email
 			hint_text: "Digite seu E-mail"
-			pos_hint: {"top": 0.46, "right": 0.63}
+			pos_hint: {"top": 0.525, "right": 0.63}
 			size_hint: 0.23, 0.04
 			multiline: False
 			background_color:0,0,0,0
@@ -35,7 +35,7 @@
 		TextInput:
 			id: nome
 			hint_text: "Digite seu nome"
-			pos_hint: {"top": 0.40, "right": 0.63}
+			pos_hint: {"top": 0.46, "right": 0.63}
 			size_hint: 0.23, 0.04
 			multiline: False
 			background_color:0,0,0,0
@@ -45,7 +45,7 @@
 		TextInput:
 			id: senha1
 			hint_text: "Digite sua senha"
-			pos_hint: {"top": 0.34, "right": 0.63}
+			pos_hint: {"top": 0.40, "right": 0.63}
 			size_hint: 0.23, 0.04
 			multiline: False
 			password: True
@@ -55,7 +55,7 @@
 		# Botão que executa a função de alterar a imagem e o tipo de entrada de dados da senha1
 		Button:
 			text:""
-			pos_hint: {"top": 0.34, "right": 0.63}
+			pos_hint: {"top": 0.40, "right": 0.65}
 			size_hint: 0.05, 0.04
 			background_color: 0,0,0,0
 			on_press: root.mostrarsenha1()
@@ -64,7 +64,7 @@
 		TextInput:
 			id: senha2
 			hint_text: "Digite sua senha novamente"
-			pos_hint: {"top": 0.28, "right": 0.63}
+			pos_hint: {"top": 0.33, "right": 0.63}
 			size_hint: 0.23, 0.04
 			multiline: False
 			password: True
@@ -74,7 +74,7 @@
 		# Botão que executa a função de alterar a imagem de mostrar/esconder senha e altera o tipo de dados de senha2
 		Button:
 			text:""
-			pos_hint: {"top": 0.28, "right": 0.63}
+			pos_hint: {"top": 0.33, "right": 0.65}
 			size_hint: 0.05, 0.04
 			background_color: 0,0,0,0
 			on_press:root.mostrarsenha2()
@@ -91,7 +91,7 @@
 		# Botão da tela de cadastro
 		Button:
 			id:cadastrar
-			pos_hint: {"top": 0.23, "right": 0.570}
+			pos_hint: {"top": 0.28, "right": 0.570}
 			size_hint: 0.15, 0.05
 			background_color: 0,0,0,0
 			on_press: app.alterar_tela("principal") if root.cadastrar() == True else print("erro")

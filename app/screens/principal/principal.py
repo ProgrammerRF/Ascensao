@@ -12,13 +12,17 @@ from app.core.sessao.gerenciador_sessao import Sessao, sessao # sessao contem a 
 from app.core.utils import resource_path # resource_path é usado para corrigir os caminhos relativos facilitando na geração de arquivos executaveis
 from kivy.core.window import Window # Window é usada para ler e gerenciar as funcionalidades do teclado
 from kivy.clock import Clock # Clock é usada para gerenciar a ordem do eventos no kivy
-
+from config.secrets import API_KEY
 from app.database.database import banco_de_dados
+from openai import OpenAI
+import threading
 
 BASE_DIR = Path(__file__).resolve().parent # localiza a baze screens
 kv_dir = BASE_DIR / "principal.kv" # acesso o caminho do arquivo principal.kv de forma relativa
 
 Builder.load_file(str(resource_path(kv_dir))) # Carrega o arquivo principal.kv usando o resource_path para corrigir o caminho
+
+openai = OpenAI(api_key=API_KEY)
 
 class Principal(Screen): # Principal herda da superclasse Screen
 	def __init__(self, **kwargs): # altera os parametros da superclasse Screen
@@ -98,9 +102,43 @@ class Principal(Screen): # Principal herda da superclasse Screen
 			entrada.pos_hint = {"top": 0.48} # altera a altura 
 		else: # se outra parte da tela for pressionada
 			entrada.pos_hint = {"top": 0.18} # Retorna para a altura original
-		
-	
 
+	def resposta_ia(self):
+		threading.Thread(target=self.resposta_ia_thread, daemon=True).start()
+
+	def resposta_ia_thread(self):
+		print("Teste")
+		pergunta_id = self.ids["pergunta"]
+		pergunta = pergunta_id.text
+		resposta = self.ids["resposta_ia"]
+		botao = self.ids["btn_enviar"]
+
+		Clock.schedule_once(self.limpar_campo)
+
+		botao.disabled = True
+		response = openai.responses.create(
+			model="gpt-5",
+			input=pergunta
+		)
+
+		falar(str(response.output_text), self.estado_audio())
+		resposta.text = response.output_text
+
+		botao.disabled = False
+
+		Clock.schedule_once(lambda dt: self.ids['resposta_ia'].texture_update(),
+							0.1)  # Atualiza a textura do texto gerado pela inteligencia artificial
+		Clock.schedule_once(
+			lambda dt: setattr(
+				self.ids['resposta_ia'],
+				'height',
+				self.ids['resposta_ia'].texture_size[1] + 50  # Espaço extra
+			), 0.15
+		)  # Organiza de forma automatica o texto para ficar legive
+
+	def limpar_campo(self, instance):
+		pergunta = self.ids["pergunta"]
+		pergunta.text = ""
 
 
 

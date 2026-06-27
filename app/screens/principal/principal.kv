@@ -33,8 +33,8 @@
 	
 	ScrollView: # Adiciona os widgets do BoxLayout em um scrollView
 		id: scroll
-		size_hint:(1,0.40) # define o tamanho da caixa do scrollview: 0.40
-		pos_hint:{'top':0.68,'right':1}
+		size_hint:(1,0.28) # define o tamanho da caixa do scrollview: 0.40
+		pos_hint:{'top':0.46,'right':1}
 		do_scroll_x: False
 		bar_width: 10
 			
@@ -47,7 +47,8 @@
 			
 			Label: # Contem um texto com a resposta da IA
 				id:resposta_ia
-				text:"The Zen of Python, by Tim Peters\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\nSpecial cases aren't special enough to break the rules.\nAlthough practicality beats purity.\nErrors should never pass silently.\nUnless explicitly silenced.\nIn the face of ambiguity, refuse the temptation to guess.\nThere should be one-- and preferably only one --obvious way to do it.\nAlthough that way may not be obvious at first unless you're Dutch.\nNow is better than never.\nAlthough never is often better than *right* now.\nIf the implementation is hard to explain, it's a bad idea.\nIf the implementation is easy to explain, it may be a good idea.\nNamespaces are one honking great idea -- let's do more of those!"
+				#text:"The Zen of Python, by Tim Peters\nBeautiful is better than ugly.\nExplicit is better than implicit.\nSimple is better than complex.\nComplex is better than complicated.\nFlat is better than nested.\nSparse is better than dense.\nReadability counts.\nSpecial cases aren't special enough to break the rules.\nAlthough practicality beats purity.\nErrors should never pass silently.\nUnless explicitly silenced.\nIn the face of ambiguity, refuse the temptation to guess.\nThere should be one-- and preferably only one --obvious way to do it.\nAlthough that way may not be obvious at first unless you're Dutch.\nNow is better than never.\nAlthough never is often better than *right* now.\nIf the implementation is hard to explain, it's a bad idea.\nIf the implementation is easy to explain, it may be a good idea.\nNamespaces are one honking great idea -- let's do more of those!"
+				text:""
 				size_hint_y:None
 				text_size: self.width - 20, None
 				halign:'left'
@@ -66,7 +67,9 @@
 		multiline: True
 	
 	Button: # Cria um botão invisivel
+	    id:btn_enviar
 		pos_hint: {"top": 0.08, "right":0.65}
 		size_hint:0.30,0.05
 		background_color:0,0,0,0
+		on_press:root.resposta_ia()
 		# A funcionalidade de enviar a pergunta será criada quando a IA estiver em desenvolvimento

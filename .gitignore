@@ -25,3 +25,5 @@ dist/
 
 # Firebase
 *firebase-adminsdk*.json
+
+config/secrets.py

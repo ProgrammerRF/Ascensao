@@ -11,7 +11,7 @@
 			Rectangle:
 				pos: self.pos
 				size: self.size
-				source: app.rp("assets/images/imagens/auroraa.png")
+				source: app.rp("assets/images/imagens/auroraal.png")
 
 		# Cria um botão invisivel na mesma posição do texto voltar com a funcionalidade de retornar para a tela de configuração
 		Button:
@@ -23,7 +23,7 @@
 		# Cria uma entrada de dados que recebe email antigo
 		TextInput:
 			id:email_antigo
-			pos_hint:{"top": 0.50, "right": 0.62}
+			pos_hint:{"top": 0.51, "right": 0.62}
 			size_hint:0.23, 0.04
 			multiline:False
 			disabled: True
@@ -31,7 +31,7 @@
 
 		TextInput:
 		    id: email_novo
-		    pos_hint:{"top": 0.43, "right": 0.62}
+		    pos_hint:{"top": 0.44, "right": 0.62}
 		    size_hint: 0.23, 0.04
 		    multiline: False
 		    background_color:0,0,0,0
@@ -40,7 +40,7 @@
 		# Cria uma entrada de dados que recebe o nome o usuario
 		TextInput:
 			id:nome
-			pos_hint:{"top":0.37, "right":0.62}
+			pos_hint:{"top":0.38, "right":0.62}
 			size_hint:0.23, 0.04
 			multiline:False
 			background_color:0,0,0,0
@@ -49,7 +49,7 @@
 		# Cria uma entrada de dados que recebe a senha do usuario
 		TextInput:
 			id:senha
-			pos_hint:{"top": 0.30, "right": 0.62}
+			pos_hint:{"top": 0.31, "right": 0.62}
 			size_hint:0.23, 0.04
 			multiline:False
 			password: True
@@ -58,7 +58,7 @@
 
 		# Botão invisivel que fica na mesma posição do icone mostrar/ocultar senha
 		Button:
-			pos_hint:{"top": 0.30, "right": 0.63}
+			pos_hint:{"top": 0.31, "right": 0.65}
 			size_hint: 0.05, 0.04
 			background_color: 0,0,0,0
 			on_press: root.mostrar_senha()
