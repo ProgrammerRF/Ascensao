@@ -27,3 +27,7 @@ dist/
 *firebase-adminsdk*.json
 
 config/secrets.py
+
+config/
+
+teste_db.py

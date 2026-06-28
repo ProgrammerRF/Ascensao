@@ -14,8 +14,10 @@ from kivy.core.window import Window # Window é usada para ler e gerenciar as fu
 from kivy.clock import Clock # Clock é usada para gerenciar a ordem do eventos no kivy
 from config.secrets import API_KEY
 from app.database.database import banco_de_dados
+from kivy.graphics import Color, RoundedRectangle
 from openai import OpenAI
 import threading
+import unicodedata
 
 BASE_DIR = Path(__file__).resolve().parent # localiza a baze screens
 kv_dir = BASE_DIR / "principal.kv" # acesso o caminho do arquivo principal.kv de forma relativa
@@ -107,9 +109,8 @@ class Principal(Screen): # Principal herda da superclasse Screen
 		threading.Thread(target=self.resposta_ia_thread, daemon=True).start()
 
 	def resposta_ia_thread(self):
-		print("Teste")
 		pergunta_id = self.ids["pergunta"]
-		pergunta = pergunta_id.text
+		pergunta = str(pergunta_id.text)
 		resposta = self.ids["resposta_ia"]
 		botao = self.ids["btn_enviar"]
 
@@ -121,7 +122,8 @@ class Principal(Screen): # Principal herda da superclasse Screen
 			input=pergunta
 		)
 
-		falar(str(response.output_text), self.estado_audio())
+		texto = unicodedata.normalize("NFKD", response.output_text)
+		falar(texto, self.estado_audio())
 		resposta.text = response.output_text
 
 		botao.disabled = False
@@ -139,7 +141,39 @@ class Principal(Screen): # Principal herda da superclasse Screen
 	def limpar_campo(self, instance):
 		pergunta = self.ids["pergunta"]
 		pergunta.text = ""
+		self.sombreamento()
 
+	def sombreamento(self):
+		indice_sombra = self.ids["float"]
+		sombra = RoundedButton(
+		text="",
+		pos_hint={"top": 0.40, "right": 1},
+		size_hint=(1, 0.15))
+
+		indice_sombra.add_widget(sombra)
+
+
+
+
+
+
+class RoundedButton(Button):
+	def __init__(self, **kwargs):
+		super().__init__(**kwargs)
+		self.background_color = (0,0,0,0)
+
+		with self.canvas.before:
+			Color(0,0,0,0.8)
+			self.rect = RoundedRectangle(
+				radius=[50],
+				pos=self.pos,
+				size=self.size
+			)
+			self.bind(pos=self.update_rect, size=self.update_rect)
+
+	def update_rect(self, *args):
+		self.rect.pos = self.pos
+		self.rect.size = self.size
 
 
 

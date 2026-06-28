@@ -1,5 +1,6 @@
 <Principal>: # classe primaria do arquivo principal.py
 	FloatLayout: # Cria um layout que armazena os widgets abaixo
+	    id:float
 		pos_hint:{"top":1, "right":1} # define a altura e largura do layout
 		size_hint:1,1 # Define tamanho e comprimento do layout
 		
@@ -30,13 +31,13 @@
 		text:""
 		pos_hint:{"top":1.35, "right":1.43}
 		size_hint:1,1
-	
+
 	ScrollView: # Adiciona os widgets do BoxLayout em um scrollView
 		id: scroll
-		size_hint:(1,0.28) # define o tamanho da caixa do scrollview: 0.40
-		pos_hint:{'top':0.46,'right':1}
+		size_hint:(1,0.15) # define o tamanho da caixa do scrollview: 0.40
+		pos_hint:{'top':0.40,'right':1}
 		do_scroll_x: False
-		bar_width: 10
+		bar_width: 5
 			
 		BoxLayout: # Adiciona o Label
 			id: box
@@ -64,7 +65,7 @@
 		background_color:0,0,0,0
 		foreground_color:1,1,1,1
 		#on_focus: root.alterar_posicao()
-		multiline: True
+		multiline: False
 	
 	Button: # Cria um botão invisivel
 	    id:btn_enviar
