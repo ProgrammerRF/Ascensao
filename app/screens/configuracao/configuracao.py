@@ -7,6 +7,7 @@ from kivy.core.window import Window # Window é usado para alterar as funcionali
 from kivy.lang import Builder # Builder é usado para acessar o conteudo do arquivo.kv
 from app.core.audio.gerenciador_de_audios import falar
 from app.core.state.estado_global import estado
+import os
 
 DIR_SCREENS = Path(__file__).resolve().parent.parent # Acessa o diretorio screens
 DIR_KV = DIR_SCREENS / "configuracao" / "configuracao.kv" # acessa o arquivo configurações.kv
