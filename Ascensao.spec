@@ -4,8 +4,8 @@
 a = Analysis(
     ['main.py'],
     pathex=[],
-    binaries=[],
-    datas=[('app\\screens', 'app\\screens'), ('assets', 'assets'), ('app\\database\\app.db', 'app\\database'), ('app\\database\\inteligencia-artificial-37d91-firebase-adminsdk-fbsvc-3dfaf7966d.json', 'app\\database'), ('bin\\espeak', 'bin\\espeak'), ('bin\\piper', 'bin\\piper')],
+    binaries=[('bin\\WfplpBlocker.exe', 'bin'), ('bin\\libsqlite3-0.dll', 'bin')],
+    datas=[('app\\screens', 'app\\screens'), ('assets', 'assets'), ('app\\database\\app.db', 'app\\database'), ('app\\database\\dominios.db', 'app\\database'), ('app\\database\\inteligencia-artificial-37d91-firebase-adminsdk-fbsvc-3dfaf7966d.json', 'app\\database'), ('bin\\espeak', 'bin\\espeak'), ('bin\\piper', 'bin\\piper')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -35,5 +35,6 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    uac_admin=True,
     icon=['assets\\icons\\ascensao.ico'],
 )

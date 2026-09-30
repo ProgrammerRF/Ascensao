@@ -3,7 +3,7 @@ import sqlite3
 import traceback
 from app.core.utils import resource_path
 
-APP_DIR = Path.home() / "Ascensao"
+APP_DIR = Path.home() / "Ascensao" / "app" / "database"
 APP_DIR.mkdir(exist_ok=True)
 DATABASE = APP_DIR
 
@@ -13,8 +13,8 @@ class BancoDeDados():
 
 	def conectar(self, banco):
 		try:
-			print((str(resource_path(fr"app\database\{banco}"))))
-			return sqlite3.connect((str(resource_path(fr"app\database\{banco}"))))
+			print(DATABASE / banco)
+			return sqlite3.connect(DATABASE / banco)
 		except Exception as e:
 			print(f"\n[database.py] [BancoDeDados] [conectar] [LINE 13] [ERROR] --> {e}\n")
 

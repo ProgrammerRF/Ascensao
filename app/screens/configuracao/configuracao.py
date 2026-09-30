@@ -3,6 +3,8 @@ from pathlib import Path # Path é usado para definir caminhos relativos
 from app.core.utils import resource_path # resource_path é usado para corrigir caminhos relativos
 from app.core.sessao.gerenciador_sessao import sessao # sessão contêm a instancia da classe Sessao
 from kivy.clock import Clock # Clock é usado para gerenciar os eventos do kivy
+from kivy.uix.image import Image
+from kivy.uix.button import ButtonBehavior
 from kivy.core.window import Window # Window é usado para alterar as funcionalidades das teclas do teclado
 from kivy.lang import Builder # Builder é usado para acessar o conteudo do arquivo.kv
 from app.core.audio.gerenciador_de_audios import falar
@@ -30,7 +32,9 @@ class Configuracao(Screen): # Herda Screen
 			self.manager.current = "principal" # Volta para a tela principal
 		return True # Retorna um valor booleano verdadeiro
 	
-	
+
+class ImageButton(ButtonBehavior, Image):
+	pass
 
 
 

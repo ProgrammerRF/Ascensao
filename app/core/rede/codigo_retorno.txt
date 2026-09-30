@@ -1,0 +1,8 @@
+
+
+DEPOIS DO POPEN 
+PID - 4688
+
+Codigo de saida - 0
+
+Hex - 0x0

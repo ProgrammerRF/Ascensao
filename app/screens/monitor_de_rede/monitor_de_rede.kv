@@ -1,0 +1,101 @@
+<MonitorDeRede>:
+
+    FloatLayout:
+
+        # ====================================================
+        # FUNDO
+        # ====================================================
+
+        pos_hint: {"top": 1.0, "right": 1.0}
+        size_hint: 1.0, 1.0
+
+        canvas.before:
+
+            Rectangle:
+
+                pos: self.pos
+                size: self.size
+
+                source: app.rp("assets/images/imagens/aurora4.png")
+
+            Color:
+
+                rgba: 1, 1, 1, 1
+
+
+        # ====================================================
+        # CAMADA ESCURA
+        # ====================================================
+
+        RoundedButton:
+
+            pos_hint: {"top": 1.0,"right": 1.0}
+
+            size_hint: 1.0, 1.0
+
+
+        # ====================================================
+        # TÍTULO
+        # ====================================================
+
+        Label:
+
+            text: "Lista de bloqueio StevenBlack/host"
+
+            pos_hint: {"top": 0.95,"right": 0.95}
+
+            size_hint: 0.90, 0.10
+
+            font_size: 40
+
+        Label:
+            text: "Voltar"
+            pos_hint: {"top":1.42,"right":0.57}
+            size_hint:1,1
+            font_size:30
+
+        Button:
+            pos_hint: {"top":0.95, "right": 0.12}
+            size_hint:0.10,0.10
+            on_press: app.alterar_tela("configuracao")
+            background_color:0,0,0,0
+
+
+
+
+        # ====================================================
+        # SCROLLVIEW
+        # ====================================================
+
+        ScrollView:
+
+            do_scroll_x: False
+            do_scroll_y: True
+
+            # 1 = topo
+            # 0 = fundo
+
+            scroll_y: 1.0
+
+            pos_hint: {"top": 0.75,"right": 0.95}
+
+            size_hint: 0.90, 0.60
+
+
+            # =================================================
+            # LISTA
+            # =================================================
+
+            BoxLayout:
+
+                id: box
+
+                orientation: "vertical"
+
+                size_hint_y: None
+
+                height: self.minimum_height
+
+                spacing: 5
+
+                padding: 10, 10

@@ -11,7 +11,7 @@
 			Rectangle: # Cria um.retangulo
 				pos: self.pos # define a posição baseada na posição do layout
 				size: self.size # Define o tamanho baseado no tamanho do layout
-				source: app.rp("assets/images/imagens/aurorap.png") # corrige o caminho relativo usando a função app.rp que leva a imagem
+				source: app.rp("assets/images/imagens/aurorap1.png") # corrige o caminho relativo usando a função app.rp que leva a imagem
 	
 	Button: # Cria um botao invisivel na mesma posição do texto acima chamando a função saida quando pressionado
 		pos_hint:{"top":0.95,"right":0.16}
@@ -21,7 +21,7 @@
 
 	# Botão invisivel na mesma posição da foto de perfil que muda para a tela de configurações quando pressionado
 	Button:
-		pos_hint:{"top": 0.98, "right": 0.95}
+		pos_hint:{"top": 0.98, "right": 0.973}
 		size_hint:0.04, 0.10
 		background_color:0,0,0,0
 		on_press: app.alterar_tela("configuracao")
@@ -29,7 +29,7 @@
 	Label: # Cria um texto que contem o nome do usuario
 		id: usuario
 		text:""
-		pos_hint:{"top":1.35, "right":1.43}
+		pos_hint:{"top":1.35, "right":1.456}
 		size_hint:1,1
 
 	ScrollView: # Adiciona os widgets do BoxLayout em um scrollView
@@ -59,7 +59,7 @@
 	
 	TextInput: # Entrada de dados que recebe as perguntas do usuario e altera a posição quando pressinado
 		id:pergunta
-		pos_hint:{"top": 0.16, "right": 0.78}
+		pos_hint:{"top": 0.19, "right": 0.76}
 		size_hint:0.45,0.08
 		hint_text: "Digite algo..."
 		background_color:0,0,0,0

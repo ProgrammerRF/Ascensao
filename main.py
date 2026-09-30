@@ -16,17 +16,24 @@ from app.screens.cadastro import cadastro # importa o conteudo do arquivo cadast
 from app.screens.principal import principal # Importa a tela principal
 from app.screens.configuracao import configuracao # Importa a tela de configurações
 from app.screens.alterar_dados import alterar_dados
+from app.screens.monitor_de_rede import monitor_de_rede
 # Importa a tela de alterar dados cadatrais
 from kivy.clock import Clock # Clock é usado para oruqestrar eventos
 from kivy.uix.screenmanager import ScreenManager # Screenmanager é usado para gerenciamento de telas
 from kivy.lang import Builder # Builder é usado para acessar o conteudo de arquivos.kv
 from app.core.utils import resource_path # resource_path é usado para correção de caminhos relativos usados pelo programa
+from app.core.rede.monitor_de_rede import monitor
 
 sm = ScreenManager()
 class Ascensao(App): # Herda as funcionalidades da superclasse App
 	
 	def on_start(self):
 		self.alterar_tela("login")
+		monitor.monitoramento()
+
+	def on_stop(self):
+		monitor.parar()
+		pass
 
 	def rp(self, path): 
 	# método que permite usar o resource_path no arquivo.kv
@@ -65,6 +72,12 @@ class Ascensao(App): # Herda as funcionalidades da superclasse App
 			else:
 				sm.add_widget(alterar_dados.Alterar_Dados(name="alterar_dados"))
 				sm.current = "alterar_dados"
+		elif tela == "monitor_de_rede":
+			if sm.has_screen(tela):
+				sm.current = "monitor_de_rede"
+			else:
+				sm.add_widget(monitor_de_rede.MonitorDeRede(name="monitor_de_rede"))
+				sm.current = "monitor_de_rede"
 		else:
 			pass
 

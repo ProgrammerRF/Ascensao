@@ -21,6 +21,8 @@ from app.core.state.estado_global import Estado_Global, estado # Função que pe
 
 from app.core.sessao.gerenciador_sessao import Sessao, sessao # sessao contem a instancia da classe Sessao usada para definir os usuarios logados
 
+
+
 # BASE_DIR representa o diretório onde ESTE arquivo .py está localizado
 # __file__  -> caminho do arquivo atual
 # resolve() -> converte para caminho absoluto real

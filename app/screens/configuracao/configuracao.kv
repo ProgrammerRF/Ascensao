@@ -11,7 +11,7 @@
 			Rectangle:
 				pos: self.pos
 				size: self.size
-				source:app.rp("assets/images/imagens/auroracon.png")
+				source:app.rp("assets/images/imagens/auroracon1.png")
 		
 		# Botão invisivel na mesma posição do texto voltar que volta para a tela principal quando pressionado
 		Button:
@@ -22,10 +22,14 @@
 		
 		# Botão invisivel na mesma posição do icone e texto alterar dados cadastrais que muda para a tela alterar_dados quando pressionado
 		Button:
-			pos_hint:{"top": 0.380, "right": 0.70}
+			pos_hint:{"top": 0.405, "right": 0.70}
 			size_hint:0.40,0.05
 			background_color:0,0,0,0
 			on_press: app.alterar_tela("alterar_dados")
-		
 
-		
+		Button:
+		    pos_hint:{"top": 0.32, "right": 0.695}
+		    size_hint:0.40,0.05
+		    on_press: app.alterar_tela("monitor_de_rede")
+		    background_color:0,0,0,0
+

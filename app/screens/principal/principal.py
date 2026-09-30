@@ -119,7 +119,8 @@ class Principal(Screen): # Principal herda da superclasse Screen
 		botao.disabled = True
 		response = openai.responses.create(
 			model="gpt-5",
-			input=pergunta
+			input=pergunta,
+			timeout=None
 		)
 
 		texto = unicodedata.normalize("NFKD", response.output_text)
